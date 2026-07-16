@@ -6,7 +6,7 @@ Premium automotive detailing and ceramic coating landing page built as a product
 
 ## Case study
 
-- **Live demo:** [apex-detailing-six.vercel.app](https://apex-detailing-six.vercel.app/)
+- **Live demo:** [apex-detailing-ciokapick.vercel.app](https://apex-detailing-ciokapick.vercel.app/)
 - **Source code:** [github.com/Ciokapick/apex-detailing](https://github.com/Ciokapick/apex-detailing)
 
 ## Status
