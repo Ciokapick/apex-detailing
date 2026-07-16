@@ -5,19 +5,41 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: #090a0b;
+    background: #0a0b0a;
   }
 
   body {
-    @apply bg-ink-950 font-sans text-zinc-300 antialiased;
+    @apply bg-carbon font-sans text-paper antialiased;
   }
 
   section[id] {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 4.25rem;
   }
 
   ::selection {
-    @apply bg-champagne-400 text-ink-950;
+    @apply bg-signal-500 text-carbon;
+  }
+}
+
+@layer utilities {
+  .hero-word {
+    font-size: clamp(6.4rem, 22vw, 21rem);
+    line-height: 0.72;
+    letter-spacing: -0.095em;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .image-noise::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+    opacity: 0.16;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
   }
 }
 

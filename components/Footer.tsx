@@ -5,38 +5,22 @@ const footerLinks = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
+const linkStyles = "rounded-sm font-mono text-[0.6rem] uppercase tracking-[0.14em] text-paper/45 transition-colors hover:text-paper active:text-signal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500";
+
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.07] bg-ink-950">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 sm:px-8 md:flex-row md:items-end md:justify-between lg:px-10">
-        <div>
-          <a
-            className="rounded-md font-display text-sm font-bold tracking-[0.16em] text-white transition-colors hover:text-champagne-300 active:text-champagne-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950"
-            href="#top"
-          >
-            APEX <span className="text-zinc-500">DETAILING</span>
+    <footer className="border-t border-paper/10 bg-carbon">
+      <div className="mx-auto max-w-[100rem] px-5 py-10 sm:px-8 lg:px-12 lg:py-12">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <a className="group flex items-center gap-3 rounded-sm text-2xl font-medium tracking-[-0.05em] text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500 lg:col-span-5" href="#top">
+            <span aria-hidden="true" className="size-2 rounded-full bg-signal-500 transition-transform group-hover:scale-150" /> APEX
           </a>
-          <p className="mt-3 text-sm text-zinc-600">
-            Precision detailing and paint protection in Austin, Texas.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-5 md:items-end">
-          <nav aria-label="Footer navigation">
-            <ul className="flex flex-wrap gap-x-6 gap-y-3">
-              {footerLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    className="rounded text-sm text-zinc-500 transition-colors hover:text-white active:text-champagne-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400"
-                    href={link.href}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+          <nav aria-label="Footer navigation" className="lg:col-span-4">
+            <ul className="flex flex-wrap gap-x-5 gap-y-3">
+              {footerLinks.map((link) => <li key={link.href}><a className={linkStyles} href={link.href}>{link.label}</a></li>)}
             </ul>
           </nav>
-          <p className="text-xs text-zinc-700">© 2026 APEX Detailing. All rights reserved.</p>
+          <p className="font-mono text-[0.58rem] uppercase leading-5 tracking-[0.13em] text-paper/30 lg:col-span-3 lg:text-right">© 2026 APEX Surface Studio<br />Fictional portfolio concept</p>
         </div>
       </div>
     </footer>

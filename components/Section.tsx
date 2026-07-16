@@ -1,13 +1,20 @@
 import type { ReactNode } from "react";
 
+type SectionTone = "paper" | "carbon" | "mineral";
+
 type SectionProps = {
   id?: string;
-  eyebrow?: string;
-  title?: string;
+  eyebrow: string;
+  title: string;
   intro?: string;
   children: ReactNode;
-  tone?: "default" | "raised";
-  align?: "left" | "center";
+  tone?: SectionTone;
+};
+
+const toneStyles: Record<SectionTone, string> = {
+  paper: "bg-paper text-carbon",
+  carbon: "bg-carbon text-paper",
+  mineral: "bg-mineral-500 text-carbon",
 };
 
 export function Section({
@@ -16,41 +23,24 @@ export function Section({
   title,
   intro,
   children,
-  tone = "default",
-  align = "left",
+  tone = "paper",
 }: SectionProps) {
-  const centered = align === "center";
-
   return (
-    <section
-      className={tone === "raised" ? "bg-ink-900" : "bg-ink-950"}
-      id={id}
-    >
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-32">
-        {(eyebrow || title || intro) && (
-          <div
-            className={[
-              "mb-12 max-w-2xl sm:mb-16",
-              centered ? "mx-auto text-center" : "",
-            ].join(" ")}
-          >
-            {eyebrow && (
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-champagne-400">
-                {eyebrow}
-              </p>
-            )}
-            {title && (
-              <h2 className="font-display text-3xl font-semibold leading-tight tracking-[-0.035em] text-white sm:text-4xl lg:text-5xl">
-                {title}
-              </h2>
-            )}
-            {intro && (
-              <p className="mt-5 text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
-                {intro}
-              </p>
-            )}
-          </div>
-        )}
+    <section className={toneStyles[tone]} id={id}>
+      <div className="mx-auto max-w-[100rem] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+        <header className="mb-14 grid gap-7 border-t border-current/20 pt-5 sm:mb-20 lg:grid-cols-12 lg:gap-8">
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] opacity-55 lg:col-span-3">
+            {eyebrow}
+          </p>
+          <h2 className="text-balance font-display text-4xl font-medium leading-[0.95] tracking-[-0.055em] sm:text-5xl lg:col-span-6 lg:text-7xl">
+            {title}
+          </h2>
+          {intro && (
+            <p className="max-w-sm self-end text-sm leading-6 opacity-65 lg:col-span-3 lg:justify-self-end">
+              {intro}
+            </p>
+          )}
+        </header>
         {children}
       </div>
     </section>

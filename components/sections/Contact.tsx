@@ -1,58 +1,50 @@
-import { ArrowRight, Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 import { Button } from "@/components/Button";
 
-const contactItems = [
-  { icon: Phone, label: "(555) 014-2098", href: "tel:+15550142098" },
-  { icon: Mail, label: "studio@apexdetailing.co", href: "mailto:studio@apexdetailing.co" },
-  { icon: MapPin, label: "1280 Motor Row, Austin, TX", href: "#contact" },
-  { icon: Clock3, label: "Mon–Sat · By appointment", href: "#contact" },
+const contactLinks = [
+  { term: "Call", detail: "+1 555 014 2098", href: "tel:+15550142098" },
+  { term: "Write", detail: "studio@apexdetailing.co", href: "mailto:studio@apexdetailing.co" },
+  { term: "Visit", detail: "1280 Motor Row, Austin TX", href: "https://maps.google.com/?q=1280+Motor+Row+Austin+TX" },
 ] as const;
 
 export function Contact() {
   return (
-    <section className="bg-ink-900" id="contact">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-32">
-        <div className="overflow-hidden rounded-3xl border border-champagne-400/20 bg-[radial-gradient(circle_at_top_right,rgba(217,180,109,0.13),transparent_40%)] p-6 shadow-glow sm:p-10 lg:p-14">
-          <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-champagne-400">
-                Ready when you are
-              </p>
-              <h2 className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-[-0.04em] text-white sm:text-4xl lg:text-5xl">
-                Give your car the finish it deserves.
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
-                Tell us about your vehicle and what you want to improve. We’ll recommend the right process—nothing more.
-              </p>
-              <div className="mt-8">
-                <Button href="mailto:studio@apexdetailing.co?subject=Detailing%20appointment" size="lg">
-                  Book your slot
-                  <ArrowRight aria-hidden="true" size={18} />
-                </Button>
-              </div>
-            </div>
+    <section className="image-noise relative isolate min-h-[46rem] overflow-hidden bg-carbon" id="contact">
+      <Image
+        alt="Black luxury SUV prepared in the APEX detailing studio"
+        className="object-cover object-[68%_center] opacity-50"
+        fill
+        sizes="100vw"
+        src="https://images.unsplash.com/photo-1554294314-80a5fb7e6bd5?auto=format&fit=crop&w=2400&q=86"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,11,10,.96)_0%,rgba(10,11,10,.72)_45%,rgba(10,11,10,.18)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-carbon via-transparent to-carbon/35" />
 
-            <address className="grid gap-4 border-t border-white/10 pt-8 not-italic lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-              {contactItems.map((item) => {
-                const Icon = item.icon;
+      <div className="relative mx-auto flex min-h-[46rem] max-w-[100rem] flex-col px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+        <div className="grid gap-8 border-t border-paper/20 pt-5 lg:grid-cols-12">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.15em] text-paper/50 lg:col-span-3">[05] / Appointment</p>
+          <p className="max-w-xs text-sm leading-6 text-paper/60 lg:col-span-3 lg:col-start-10">Tell us the car, its condition and the finish you want. We’ll reply with a clear recommendation.</p>
+        </div>
 
-                return (
-                  <a
-                    className="group flex items-center gap-3 rounded-lg text-sm text-zinc-400 transition-colors hover:text-white active:text-champagne-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-400 focus-visible:ring-offset-4 focus-visible:ring-offset-ink-900"
-                    href={item.href}
-                    key={item.label}
-                  >
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-white/[0.05] text-champagne-400 transition-colors group-hover:bg-champagne-400/10">
-                      <Icon aria-hidden="true" size={16} />
-                    </span>
-                    {item.label}
-                  </a>
-                );
-              })}
-            </address>
+        <div className="my-auto grid items-center gap-8 py-20 lg:grid-cols-12">
+          <h2 className="text-balance text-6xl font-medium leading-[0.78] tracking-[-0.075em] text-paper sm:text-8xl lg:col-span-9 lg:text-[9rem]">Book the studio.</h2>
+          <div className="lg:col-span-3 lg:justify-self-center">
+            <Button aria-label="Book your slot by email" href="mailto:studio@apexdetailing.co?subject=APEX%20studio%20appointment" size="circle">
+              Book your slot <ArrowUpRight aria-hidden="true" size={16} />
+            </Button>
           </div>
         </div>
+
+        <address className="grid border-t border-paper/20 pt-5 not-italic sm:grid-cols-3">
+          {contactLinks.map((item) => (
+            <div className="mb-5" key={item.term}>
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.15em] text-paper/35">{item.term}</p>
+              <a className="mt-2 inline-block rounded-sm text-sm text-paper/75 transition-colors hover:text-signal-500 active:text-signal-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500 focus-visible:ring-offset-4 focus-visible:ring-offset-carbon" href={item.href}>{item.detail}</a>
+            </div>
+          ))}
+        </address>
       </div>
     </section>
   );
